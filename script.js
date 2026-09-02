@@ -1,16 +1,246 @@
 const chatContainer = document.getElementById('chat-container');
 
 const rolesData = {
-    "1": { title: "Software Engineer", desc: "Diseña, desarrolla y mantiene la arquitectura de código y escalabilidad que impulsa nuestra plataforma.", kpis: [{ kpi: "Calidad del Código", metrica: "Tasa de errores post-despliegue", meta: "< 2%" }, { kpi: "Velocidad de Entrega", metrica: "Puntos de historia por Sprint", meta: "90% de cumplimiento" }] },
-    "2": { title: "Customer Success Manager", desc: "Asegura que nuestros clientes empresariales adopten y obtengan el máximo retorno de inversión (ROI) de nuestras soluciones.", kpis: [{ kpi: "Retención de Clientes", metrica: "Net Retention Rate (NRR)", meta: "> 110%" }, { kpi: "Satisfacción y Lealtad", metrica: "Net Promoter Score (NPS)", meta: "> 40 puntos" }] },
-    "3": { title: "Talent Acquisition Specialist", desc: "Atrae, evalúa y contrata al mejor talento del mercado para mantener el estándar de excelencia de LinkedIn.", kpis: [{ kpi: "Tiempo de Contratación", metrica: "Días desde apertura hasta oferta", meta: "< 45 días" }, { kpi: "Calidad de Contratación", metrica: "Retención del candidato a 6 meses", meta: "> 95%" }] },
-    "4": { title: "B2B Sales Executive", desc: "Impulsa el crecimiento de los ingresos mediante la prospección estratégica y cierre de contratos empresariales.", kpis: [{ kpi: "Logro de Cuota", metrica: "Ingresos recurrentes anuales (ARR)", meta: "100% de la cuota" }, { kpi: "Tasa de Cierre", metrica: "Win Rate (Oportunidades ganadas)", meta: "> 25%" }] },
-    "5": { title: "Data Scientist", desc: "Desarrolla modelos predictivos y algoritmos de Machine Learning para mejorar la personalización del feed.", kpis: [{ kpi: "Precisión del Modelo", metrica: "F1 Score / Accuracy en producción", meta: "> 90%" }, { kpi: "Impacto en Negocio", metrica: "Incremento en Engagement (CTR)", meta: "+ 5% trimestral" }] },
-    "6": { title: "Product Manager", desc: "Lidera la visión, estrategia y ciclo de vida de nuevos productos, alineando necesidades del usuario con el negocio.", kpis: [{ kpi: "Adopción de Funciones", metrica: "% de usuarios activos a 30 días", meta: "> 30%" }, { kpi: "Velocidad de Lanzamiento", metrica: "Cumplimiento del Roadmap", meta: "85% on-time" }] },
-    "7": { title: "UX Designer", desc: "Garantiza que nuestras interfaces sean altamente intuitivas, accesibles y generen deleite en el usuario final.", kpis: [{ kpi: "Usabilidad del Sistema", metrica: "System Usability Scale (SUS)", meta: "> 80 puntos" }, { kpi: "Éxito de Tarea", metrica: "Tasa de completitud sin fricción", meta: "> 90%" }] },
-    "8": { title: "Technical Support", desc: "Resuelve incidencias técnicas complejas, garantizando la continuidad operativa de los clientes corporativos.", kpis: [{ kpi: "Tiempo de 1ra Respuesta", metrica: "SLA de respuesta a tickets críticos", meta: "< 30 minutos" }, { kpi: "Resolución Efectiva", metrica: "Resolución en 1er contacto (FCR)", meta: "> 75%" }] },
-    "9": { title: "Content Marketing", desc: "Diseña y ejecuta estrategias de contenido inbound para generar autoridad de marca y leads calificados.", kpis: [{ kpi: "Crecimiento de Tráfico", metrica: "Visitantes únicos al ecosistema", meta: "+ 15% trimestral" }, { kpi: "Generación de Leads", metrica: "MQLs (Marketing Qualified Leads)", meta: "> 200/mes" }] },
-    "10": { title: "Financial Analyst", desc: "Analiza el rendimiento financiero, elabora presupuestos complejos y provee pronósticos directivos.", kpis: [{ kpi: "Precisión de Pronóstico", metrica: "Varianza entre forecast y gasto", meta: "< 5% desviación" }, { kpi: "Eficiencia de Cierre", metrica: "Días hábiles para cierre mensual", meta: "< 4 días" }] }
+    "1": { 
+        title: "Software Engineer (Backend / Frontend)", 
+        desc: "Responsable de diseñar, desarrollar, probar y desplegar la arquitectura de software que sostiene la plataforma de LinkedIn, garantizando alta disponibilidad, seguridad y escalabilidad.",
+        kpisDetail: [
+            { 
+                name: "Calidad del Código (Tasa de Defectos)", 
+                metrica: "Porcentaje de errores post-despliegue en producción", 
+                meta: "< 2%",
+                explicacion: "Mide la solidez técnica del trabajo entregado. A través de EPM, el sistema rastrea automáticamente los commits en GitHub/GitLab y los registros de errores en SonarQube para identificar qué porcentaje de código desplegado requirió parches o generó fallas críticas."
+            },
+            { 
+                name: "Velocidad de Entrega (Sprint Velocity)", 
+                metrica: "Puntos de historia completados vs. planificados", 
+                meta: ">= 90% de cumplimiento",
+                explicacion: "Evalúa la capacidad de estimación y productividad del ingeniero. El software EPM monitorea la actividad en Jira y el tiempo efectivo invertido en el entorno de desarrollo (IDE) para verificar el avance constante de las tareas asignadas."
+            },
+            { 
+                name: "Disponibilidad del Servicio (Uptime)", 
+                metrica: "Tiempo de actividad continuo de los microservicios a cargo", 
+                meta: "99.9%",
+                explicacion: "Indica la estabilidad de la infraestructura desarrollada. Los sistemas de monitoreo de red registran la latencia y caídas de servicio en tiempo real, vinculando la responsabilidad directa del rendimiento con el equipo a cargo."
+            }
+        ]
+    },
+    "2": { 
+        title: "Customer Success Manager (CSM)", 
+        desc: "Gestiona la relación estratégica con clientes corporativos para asegurar la adopción continua de las soluciones de LinkedIn (Talent & Marketing Solutions) y maximizar la retención de cuentas.",
+        kpisDetail: [
+            { 
+                name: "Tasa de Retención Neta (NRR)", 
+                metrica: "Porcentaje de ingresos recurrentes retenidos y expandidos", 
+                meta: "> 110%",
+                explicacion: "Refleja la capacidad de mantener y hacer crecer el valor de la cartera de clientes. El sistema EPM sincroniza la actividad en Salesforce y registra los contratos renovados o ampliados electrónicamente."
+            },
+            { 
+                name: "Nivel de Adopción de Plataforma (Health Score)", 
+                metrica: "Índice de uso activo de la plataforma por parte del cliente", 
+                meta: "> 85/100 puntos",
+                explicacion: "Identifica si el cliente está usando las herramientas contratadas. El monitoreo EPM rastrea la frecuencia con la que el CSM interactúa con las cuentas de bajo uso para aplicar estrategias preventivas de rescate."
+            },
+            { 
+                name: "Satisfacción del Cliente (NPS)", 
+                metrica: "Puntuación de recomendación en encuestas automatizadas", 
+                meta: "> 40 puntos",
+                explicacion: "Mide la percepción de valor del cliente. Tras cada interacción virtual o revisión trimestral registrada en el sistema de llamadas, la plataforma EPM dispara encuestas automáticas de satisfacción."
+            }
+        ]
+    },
+    "3": { 
+        title: "Talent Acquisition Specialist", 
+        desc: "Lidera los procesos de atracción, evaluación, selección y contratación del mejor talento del mercado internacional para cubrir las vacantes estratégicas de la empresa.",
+        kpisDetail: [
+            { 
+                name: "Tiempo de Cobertura (Time-to-Hire)", 
+                metrica: "Días transcurridos desde la publicación hasta la aceptación de la oferta", 
+                meta: "< 45 días",
+                explicacion: "Evalúa la agilidad del reclutador. El sistema EPM rastrea las etapas del candidato dentro del sistema ATS (Applicant Tracking System), contabilizando los días exactos en cada fase del embudo."
+            },
+            { 
+                name: "Calidad de Contratación (Quality-of-Hire)", 
+                metrica: "Retención y evaluación de desempeño del contratado a los 6 meses", 
+                meta: "> 95%",
+                explicacion: "Verifica que las contrataciones sean sostenibles y acertadas. EPM cruza la información de contratación con los resultados de la primera evaluación de desempeño del nuevo empleado en Workday."
+            },
+            { 
+                name: "Efectividad de Oferta (Offer Acceptance Rate)", 
+                metrica: "Porcentaje de ofertas laborales aceptadas por los candidatos", 
+                meta: "> 85%",
+                explicacion: "Mide la competitividad del proceso y la capacidad de negociación del reclutador al presentar propuestas económicas finales registradas en el sistema de RRHH."
+            }
+        ]
+    },
+    "4": { 
+        title: "B2B Sales Executive", 
+        desc: "Encargado de la prospección, negociación y cierre de nuevos negocios con clientes corporativos para la venta de licencias y soluciones empresariales de LinkedIn.",
+        kpisDetail: [
+            { 
+                name: "Cumplimiento de Cuota (Quota Attainment)", 
+                metrica: "Monto total de ventas cerradas vs. cuota asignada (ARR)", 
+                meta: "100% de la cuota trimestral",
+                explicacion: "El indicador clave de ingresos. El monitoreo de Salesforce registra automáticamente cada oportunidad ganada y contrasta el volumen de ventas en tiempo real con la cuota establecida."
+            },
+            { 
+                name: "Tasa de Cierre (Win Rate)", 
+                metrica: "Porcentaje de oportunidades calificadas que se convierten en contrato", 
+                meta: "> 25%",
+                explicacion: "Determina la eficiencia comercial en las negociaciones. EPM monitorea el pipeline de ventas registrando el avance, estancamiento o pérdida de cada oportunidad en el sistema CRM."
+            },
+            { 
+                name: "Actividad de Prospección Efectiva", 
+                metrica: "Número de reuniones ejecutivas y demostraciones realizadas", 
+                meta: "> 20 reuniones al mes",
+                explicacion: "Evalúa la disciplina de ventas. Mediante la integración de agendas electrónicas y telefonía IP, EPM audita automáticamente el volumen de interacciones comerciales sostenidas."
+            }
+        ]
+    },
+    "5": { 
+        title: "Data Scientist / Machine Learning Engineer", 
+        desc: "Diseña, entrena y optimiza algoritmos predictivos para enriquecer las recomendaciones del feed, la búsqueda de empleo y los productos publicitarios.",
+        kpisDetail: [
+            { 
+                name: "Precisión del Modelo (F1-Score / Accuracy)", 
+                metrica: "Métrica de exactitud técnica del algoritmo en entorno de producción", 
+                meta: "> 90%",
+                explicacion: "Asegura que los modelos matemáticos entreguen predicciones confiables. El sistema EPM monitorea la tasa de falsos positivos/negativos que registra la plataforma durante pruebas A/B en vivo."
+            },
+            { 
+                name: "Impacto Operativo en Producto", 
+                metrica: "Porcentaje de incremento en la métrica objetivo (ej. Click-Through Rate)", 
+                meta: "+ 5% trimestral",
+                explicacion: "Conecta el desarrollo técnico con el impacto en el negocio. Los dashboards de telemetría miden cómo el nuevo algoritmo afectó el comportamiento real de los usuarios en la plataforma."
+            },
+            { 
+                name: "Eficiencia de Cómputo (Pipeline Optimization)", 
+                metrica: "Reducción del tiempo y costo de procesamiento de datos masivos", 
+                meta: "Reducción del 10% en uso de servidor",
+                explicacion: "Monitorea la optimización de recursos. EPM recopila registros de consumo en la nube (AWS/Azure) para auditar la eficiencia computacional del código desarrollado."
+            }
+        ]
+    },
+    "6": { 
+        title: "Product Manager", 
+        desc: "Define la visión, estrategia de producto y hoja de ruta (Roadmap), colaborando transversalmente con ingeniería, diseño y marketing para lanzar soluciones al mercado.",
+        kpisDetail: [
+            { 
+                name: "Adopción de Nuevas Funciones", 
+                metrica: "Porcentaje de usuarios activos (MAU) interactuando con la función a los 30 días", 
+                meta: "> 30%",
+                explicacion: "Determina si el mercado valoró la funcionalidad lanzada. La analítica integrada de la plataforma registra la tasa de uso de cada botón o sección lanzada por el equipo del PM."
+            },
+            { 
+                name: "Velocidad de Cumplimiento de Roadmap", 
+                metrica: "Porcentaje de épicas y proyectos entregados en la fecha comprometida", 
+                meta: "85% on-time",
+                explicacion: "Evalúa la capacidad de gestión de proyectos y priorización. EPM analiza la brecha temporal entre las fechas estimadas en el plan inicial y las fechas reales de lanzamiento registradas en Jira."
+            },
+            { 
+                name: "Retención del Usuario (Retention Impact)", 
+                metrica: "Tasa de retorno de usuarios que interactúan con la solución", 
+                meta: "> 60% a 90 días",
+                explicacion: "Mide si el producto aporta valor a largo plazo. Las métricas del sistema rastrean si los usuarios continúan utilizando la herramienta semanas después de su descubrimiento."
+            }
+        ]
+    },
+    "7": { 
+        title: "UX Designer", 
+        desc: "Investiga, conceptualiza y diseña experiencias de usuario óptimas, accesibles e intuitivas que eliminen la fricción en la navegación dentro de la plataforma.",
+        kpisDetail: [
+            { 
+                name: "Índice de Usabilidad del Sistema (SUS)", 
+                metrica: "Calificación estandarizada obtenida en pruebas de usabilidad", 
+                meta: "> 80 / 100 puntos",
+                explicacion: "Evalúa la facilidad de uso. A través de software de pruebas remotas monitoreadas, se registran las calificaciones que otorgan los usuarios reales tras realizar tareas específicas."
+            },
+            { 
+                name: "Tasa de Éxito de Tarea (Task Completion Rate)", 
+                metrica: "Porcentaje de usuarios que completan un flujo sin cometer errores o abandonar", 
+                meta: "> 90%",
+                explicacion: "Mide la efectividad del diseño. Las herramientas de mapas de calor y analítica de clics (EPM) registran si el usuario encuentra el flujo intuitivo o abandona la pantalla."
+            },
+            { 
+                name: "Eficiencia de Navegación (Time on Task)", 
+                metrica: "Tiempo promedio requeridos para completar un proceso clave (ej. publicar empleo)", 
+                meta: "Reducción del 15% en tiempo",
+                explicacion: "Verifica la eliminación de pasos innecesarios. El sistema monitorea el tiempo en segundos que le toma a un usuario promedio ir desde el inicio hasta la confirmación de la acción."
+            }
+        ]
+    },
+    "8": { 
+        title: "Technical Support Engineer", 
+        desc: "Proporciona soporte técnico avanzado de segundo o tercer nivel para resolver incidencias críticas escaladas por clientes corporativos.",
+        kpisDetail: [
+            { 
+                name: "Tiempo de Primera Respuesta (SLA)", 
+                metrica: "Minutos transcurridos hasta la primera atención de un ticket crítico", 
+                meta: "< 30 minutos",
+                explicacion: "Garantiza rapidez ante emergencias. La plataforma de ticketing (Zendesk/ServiceNow) registra electrónicamente la hora exacta de ingreso del caso y el sello de tiempo de la primera respuesta enviada."
+            },
+            { 
+                name: "Resolución en Primer Contacto (FCR)", 
+                metrica: "Porcentaje de casos resueltos sin necesidad de reescalar a ingeniería", 
+                meta: "> 75%",
+                explicacion: "Mide la solvencia técnica del ingeniero. El sistema audita si la incidencia fue marcada como resuelta en la primera interacción o si requirió transferencias adicionales."
+            },
+            { 
+                name: "Satisfacción Post-Soporte (CSAT)", 
+                metrica: "Promedio de calificación otorgado por el cliente al cerrar el caso", 
+                meta: "> 4.8 / 5.0",
+                explicacion: "Refleja la calidad del trato y la solución ofrecida. EPM envía y recopila la evaluación inmediata de 1 a 5 estrellas al momento de dar por cerrado cada ticket."
+            }
+        ]
+    },
+    "9": { 
+        title: "Content Marketing Manager", 
+        desc: "Planifica, produce y distribuye contenidos educativos e informativos estratégicos para posicionar la marca y captar clientes potenciales.",
+        kpisDetail: [
+            { 
+                name: "Crecimiento de Tráfico Orgánico", 
+                metrica: "Porcentaje de incremento en visitantes únicos a la sección de noticias/recursos", 
+                meta: "+ 15% trimestral",
+                explicacion: "Mide la atracción de audiencia. Las herramientas de analítica web registran el origen de los usuarios, contabilizando el tráfico generado sin inversión en pauta pagada."
+            },
+            { 
+                name: "Generación de Leads Calificados (MQLs)", 
+                metrica: "Volumen de contactos corporativos que descargan recursos y cumplen perfil", 
+                meta: "> 200 leads al mes",
+                explicacion: "Mide la conversión comercial del contenido. La plataforma de automatización de marketing (HubSpot/Marketo) registra los formularios llenados y califica el perfil del usuario."
+            },
+            { 
+                name: "Tiempo de Permanencia y Lectura (Engagement Rate)", 
+                metrica: "Tiempo promedio de lectura efectiva por artículo publicado", 
+                meta: "> 2:30 minutos",
+                explicacion: "Verifica la relevancia del material. El monitoreo digital mide el desplazamiento (scroll) y tiempo activo en pantalla para comprobar que el contenido se leyó realmente."
+            }
+        ]
+    },
+    "10": { 
+        title: "Financial Analyst", 
+        desc: "Monitorea la salud financiera de las unidades de negocio, realiza proyecciones presupuestales y proporciona análisis costo-beneficio para decisiones directivas.",
+        kpisDetail: [
+            { 
+                name: "Precisión del Pronóstico Financiero (Variance Rate)", 
+                metrica: "Porcentaje de desviación entre el presupuesto proyectado y el gasto real", 
+                meta: "< 5% de varianza",
+                explicacion: "Mide la exactitud de los modelos financieros. El sistema ERP (SAP/Oracle) contrasta automáticamente al final de cada trimestre la brecha presupuestaria acumulada."
+            },
+            { 
+                name: "Velocidad de Cierre Mensual", 
+                metrica: "Días hábiles requeridos para consolidar y conciliar los estados financieros", 
+                meta: "< 4 días hábiles",
+                explicacion: "Evalúa la eficiencia operativa. EPM registra los sellos de tiempo cuando se completan las conciliaciones bancarias y asientos contables de cada módulo."
+            },
+            { 
+                name: "Identificación de Oportunidades de Ahorro", 
+                metrica: "Monto en dólares de eficiencias operativas identificadas y validadas", 
+                meta: "2% de reducción en OPEX",
+                explicacion: "Demuestra visión analítica proactiva. Se auditan las propuestas presentadas por el analista que fueron aprobadas para reducir costos no esenciales en las operaciones."
+            }
+        ]
+    }
 };
 
 function addMessage(type, htmlContent) {
@@ -22,7 +252,7 @@ function addMessage(type, htmlContent) {
 }
 
 function initChat() {
-    addMessage('bot', `<strong>¡Hola! Soy tu Asistente de Capacitación de Talento de LinkedIn.</strong><br><br>Mi objetivo es dotarte de las herramientas necesarias para ejecutar una evaluación de desempeño estructurada, justa y profundamente alineada con nuestra cultura corporativa.<br><br>Para comenzar con la personalización de la guía, <strong>¿a qué puesto pertenece el colaborador que vas a evaluar?</strong>`);
+    addMessage('bot', `<strong>¡Bienvenido al Capacitador de Líderes de LinkedIn!</strong><br><br>Este asistente interactivo ha sido diseñado para guiar a los mandos medios en el proceso de evaluación de desempeño de sus colaboradores, apoyándose en la metodología <strong>EPM (Electronic Performance Monitoring)</strong> y en técnicas efectivas de retroalimentación.<br><br>Para comenzar con el tutor personalizado, <strong>selecciona el puesto del colaborador que vas a evaluar:</strong>`);
     
     let optionsHtml = `<div class="options-container">`;
     for (const [key, role] of Object.entries(rolesData)) {
@@ -36,25 +266,45 @@ function handleRoleSelection(roleId, roleTitle) {
     const oldOptions = document.querySelector('.options-container');
     if(oldOptions) oldOptions.remove();
 
-    addMessage('user', `Revisaremos a un ${roleTitle}`);
+    addMessage('user', `Deseo evaluar al puesto de: ${roleTitle}`);
     
     const role = rolesData[roleId];
     setTimeout(() => {
-        let tableRows = role.kpis.map(k => `<tr><td>${k.kpi}</td><td>${k.metrica}</td><td>${k.meta}</td></tr>`).join('');
+        let tableRows = role.kpisDetail.map(k => `<tr><td><strong>${k.name}</strong></td><td>${k.metrica}</td><td><strong>${k.meta}</strong></td></tr>`).join('');
+        
+        let kpiExplanations = role.kpisDetail.map((k, index) => `
+            <p style="margin-bottom: 8px;"><strong>${index + 1}. ${k.name}:</strong> ${k.explicacion}</p>
+        `).join('');
+
         let response = `
-            <strong>Definición del Rol: ${role.title}</strong><br>${role.desc}<br><br>
-            <strong>KPIs Clave a Evaluar:</strong>
-            <table><tr><th>Indicador (KPI)</th><th>Métrica de Medición</th><th>Meta Esperada</th></tr>${tableRows}</table><br>
-            <strong>Integración con el Sistema EPM (Electronic Performance Monitoring):</strong><br>
-            Nuestra evaluación se apoya en el Monitoreo Electrónico del Desempeño. Mediante el uso de redes tecnológicas y software interno, monitoreamos las computadoras de los subordinados para registrar tiempos de respuesta, uso de aplicaciones clave y actividad en tiempo real.<br><br>
-            Como líder, usar este EPM te permite:
-            <ol>
-                <li><strong>Evaluación Objetiva:</strong> Respaldar tus comentarios con evidencia cuantificable extraída directamente de la actividad digital del usuario.</li>
-                <li><strong>Detección de Desviaciones:</strong> Identificar inmediatamente si el colaborador está invirtiendo su tiempo en prioridades incorrectas.</li>
-                <li><strong>Transparencia Total:</strong> Mostrarle al empleado su propio registro de productividad para justificar la calificación de sus KPIs.</li>
-            </ol>
+            <h3 style="margin-top:0; color:#0a66c2;">Paso 1: Definición del Puesto</h3>
+            <strong>Puesto: ${role.title}</strong><br>
+            <p>${role.desc}</p>
+
+            <h3 style="color:#0a66c2;">Paso 2: Tablero de KPIs e Integración con EPM</h3>
+            <p>A continuación se presentan los indicadores de desempeño clave que el sistema extrae para este puesto:</p>
+            
+            <table>
+                <tr><th>KPI</th><th>Métrica de Medición</th><th>Meta Esperada</th></tr>
+                ${tableRows}
+            </table><br>
+
+            <strong>Análisis Detallado de los KPIs y su Obtención vía EPM:</strong>
+            ${kpiExplanations}
+
+            <div style="background-color: #f8f9fa; padding: 12px; border-left: 4px solid #0a66c2; margin-top: 15px; border-radius: 4px;">
+                <strong>¿Cómo funciona el Sistema EPM (Electronic Performance Monitoring) en LinkedIn?</strong><br>
+                El EPM es una técnica basada en el uso de redes tecnológicas y software interno para monitorear la actividad en las computadoras de los subordinados. Registra marcas de tiempo, avance de tickets, líneas de código, uso de aplicaciones corporativas y tiempos de respuesta.<br><br>
+                <strong>Beneficios para el Líder:</strong>
+                <ol style="margin-bottom:0; padding-left:20px;">
+                    <li><strong>Datos 100% Objetivos:</strong> Elimina el favoritismo. La evaluación se basa en evidencias digitales registradas en el servidor.</li>
+                    <li><strong>Detección Oportuna de Cuellos de Botella:</strong> Permite ver si el colaborador está estancado en una aplicación específica o requiere capacitación.</li>
+                    <li><strong>Alineación Estratégica:</strong> Demuestra cómo las horas de trabajo activo en la computadora impactan directamente en los objetivos globales de LinkedIn.</li>
+                </ol>
+            </div>
+
             <div class="options-container">
-                <button class="option-btn" onclick="showPlanning()">Paso 2: ¿Cómo planear la entrevista EPM?</button>
+                <button class="option-btn" onclick="showPlanning()">Paso 3: Ver cómo planear la entrevista de retroalimentación</button>
             </div>`;
         addMessage('bot', response);
     }, 600);
@@ -64,20 +314,35 @@ function showPlanning() {
     const oldOptions = document.querySelectorAll('.options-container');
     if(oldOptions.length > 0) oldOptions[oldOptions.length - 1].remove();
 
-    addMessage('user', `¿Cómo debo estructurar y planear la entrevista?`);
+    addMessage('user', `¿Cómo debo estructurar y planear la entrevista de retroalimentación?`);
     
     setTimeout(() => {
         addMessage('bot', `
-            <strong>Protocolo de Planeación de la Sesión 1:1:</strong><br><br>
-            Una evaluación EPM exitosa se gana en la preparación previa. Sigue estos pasos clave antes de sentarte con tu colaborador:
-            <ul>
-                <li><strong>Auditoría de Datos EPM:</strong> Descarga el reporte de monitoreo electrónico del último ciclo. Analiza las tendencias: ¿Hubo picos de inactividad? ¿Cuáles son las horas de mayor productividad? Conoce los números a la perfección antes de la junta.</li>
-                <li><strong>Contextualización del Comportamiento:</strong> El tablero EPM te dice el <em>'qué'</em> (los números y tiempos), pero tú debes investigar el <em>'cómo'</em>. Recopila retroalimentación de pares que expliquen el porqué de los resultados numéricos.</li>
-                <li><strong>Agenda Anticipada:</strong> Agenda la reunión con al menos 1 semana de anticipación. En la invitación, incluye los KPIs y registros a revisar para evitar emboscadas.</li>
-                <li><strong>Seguridad Psicológica:</strong> Reserva una sala privada (o bloquea interrupciones si es virtual). El colaborador debe sentir que tiene tu atención incondicional y que es un espacio seguro para el diálogo constructivo.</li>
-            </ul>
+            <h3 style="margin-top:0; color:#0a66c2;">Paso 3: Planeación de la Entrevista de Retroalimentación</h3>
+            <p>Una sesión exitosa requiere una preparación minuciosa. Sigue este protocolo estructurado antes de reunirte con el colaborador:</p>
+            
+            <ol>
+                <li><strong>Auditoría Exhaustiva del Tablero EPM:</strong> 
+                    <br>Antes de la sesión, revisa las métricas de los últimos 3 meses. Analiza no solo la cifra final, sino la tendencia semanal (ej. picos de productividad, caídas repentinas en tiempos de respuesta). Conoce los datos mejor que el colaborador.
+                </li><br>
+                <li><strong>Recopilación de Contexto Cualitativo:</strong> 
+                    <br>El EPM te da el <em>'qué'</em> (las métricas electrónicas), pero tú como líder debes investigar el <em>'porqué'</em>. Consulta si hubo caídas de servidor, cambios de requerimientos a última hora o problemas de salud que justificaran variaciones en las métricas.
+                </li><br>
+                <li><strong>Convocatoria Transparente y Anticipada:</strong> 
+                    <br>Agenda la junta 1:1 con al menos 1 semana de anticipación. En la invitación, adjunta el reporte EPM que van a revisar. Nunca convoques a una sesión de retroalimentación de sorpresa; eso genera ansiedad y actitud defensiva.
+                </li><br>
+                <li><strong>Garantía de Seguridad Psicológica y Entorno:</strong> 
+                    <br>Reserva una sala privada libre de miradas de terceros o asegura una sesión virtual con cámara encendida sin distracciones. Desactiva las notificaciones de Slack, correo y celular durante toda la hora.
+                </li><br>
+                <li><strong>Diseño de Preguntas Abiertas de Indagación:</strong> 
+                    <br>Prepara al menos 3 preguntas que inviten a la reflexión, por ejemplo: 
+                    <em>"¿Qué factores del entorno digital te ayudaron o frenaron para alcanzar la meta del KPI #1?"</em> o 
+                    <em>"¿Cómo sientes que el monitoreo electrónico refleja tu esfuerzo diario?"</em>
+                </li>
+            </ol>
+
             <div class="options-container">
-                <button class="option-btn" onclick="showTips()">Paso 3: Tips para resolución de conflictos</button>
+                <button class="option-btn" onclick="showTips()">Paso 4: Ver tips para una retroalimentación y resolución de conflictos exitosa</button>
             </div>`);
     }, 600);
 }
@@ -86,21 +351,38 @@ function showTips() {
     const oldOptions = document.querySelectorAll('.options-container');
     if(oldOptions.length > 0) oldOptions[oldOptions.length - 1].remove();
 
-    addMessage('user', `Dame los tips para ejecutar una retroalimentación y manejar conflictos.`);
+    addMessage('user', `¿Qué tips me das para llevar a cabo la sesión y resolver posibles conflictos?`);
     
     setTimeout(() => {
         addMessage('bot', `
-            <strong>Tips para una Retroalimentación y Manejo de Conflictos Exitoso:</strong><br><br>
-            Durante la charla, tu objetivo no es juzgar, sino actuar como un facilitador de soluciones:
+            <h3 style="margin-top:0; color:#0a66c2;">Paso 4: Tips para una Retroalimentación Exitosa y Manejo de Conflictos</h3>
+            <p>Durante la conversación, el monitoreo electrónico puede generar tensión si el colaborador siente que es "vigilado". Aplica las siguientes técnicas de liderazgo para convertir el conflicto en un diálogo constructivo:</p>
+
             <ul>
-                <li><strong>Abordaje Positivo del Conflicto:</strong> Es común que el colaborador se ponga a la defensiva al ver sus métricas de monitoreo. Usa la técnica "Conectar antes de Corregir"; valida sus retos primero y luego redirige la charla hacia los datos.</li>
-                <li><strong>Radical Candor:</strong> Habla estrictamente sobre los comportamientos evidenciados por el EPM y nunca ataques la personalidad.</li>
-                <li><strong>Escucha Activa (La Regla 70/30):</strong> Permite que el colaborador hable el 70% del tiempo. Haz preguntas de sondeo sobre los obstáculos externos que impactaron sus métricas de monitoreo.</li>
-                <li><strong>Enfoque en el Futuro, no en la Culpa:</strong> Si los números son bajos, no uses la junta para regañar. Transforma el conflicto en colaboración preguntando: <em>"¿Qué recursos te faltan para mejorar estas métricas el próximo mes?"</em></li>
+                <li><strong>Técnica "Conectar antes de Corregir" (Manejo de Conflictos):</strong>
+                    <br>Si el colaborador llega a la defensiva cuestionando los datos del EPM, no te enganches en una discusión técnica. Valida sus emociones primero diciendo: <em>"Entiendo que ver estas métricas pueda ser estresante. Mi objetivo no es vigilarte, sino entender qué obstáculos tuviste para ayudarte a superarlos."</em>
+                </li><br>
+                <li><strong>Aplicación de Radical Candor (Franqueza Radical):</strong>
+                    <br>Combina la empatía personal con el desafío directo. Sé transparente sobre las métricas no alcanzadas, pero deja claro que tu intención es apoyarlo en su crecimiento profesional dentro de LinkedIn.
+                </li><br>
+                <li><strong>Separar la Identidad del Comportamiento:</strong>
+                    <br>Nunca uses etiquetas personales ("Eres lento", "Eres descuidado"). Apóyate en el tablero EPM para hablar exclusivamente de hechos objetivos e impersonales: <em>"El registro del sistema muestra que el tiempo de respuesta promedio fue de 45 minutos, cuando la meta es de 30."</em>
+                </li><br>
+                <li><strong>La Regla de Oro 70/30 (Escucha Activa):</strong>
+                    <br>Habla solo el 30% del tiempo (para presentar datos y hacer preguntas) y escucha el 70% restante. Permite que el colaborador explique las causas raíz de sus métricas sin interrumpirlo.
+                </li><br>
+                <li><strong>Enfoque en 'Feed-forward' y Co-creación de Soluciones:</strong>
+                    <br>No dediquen la reunión a culpar al pasado. Dediquen los últimos 15 minutos a acordar un Plan de Acción concreto (IDP) para los próximos 90 días, estableciendo compromisos mutuos (capacitación, nuevas herramientas, ajustes de flujo).
+                </li>
             </ul>
-            <p><em>¡Estás completamente preparado! Recuerda que un buen líder no solo monitorea el rendimiento, sino que lo eleva e inspira.</em></p>
+
+            <div style="background-color: #e6f4ea; color: #0d652d; padding: 12px; border-radius: 4px; margin-top: 15px;">
+                <strong>¡Felicidades! Has completado el tutorial de capacitación EPM para líderes.</strong><br>
+                Ahora cuentas con la estructura completa para evaluar, medir y retroalimentar a tu equipo de manera justa, objetiva e inspiradora.
+            </div>
+
             <div class="options-container">
-                <button class="option-btn" onclick="location.reload()">Reiniciar y evaluar otro puesto</button>
+                <button class="option-btn" onclick="location.reload()">Evaluar a otro colaborador (Reiniciar)</button>
             </div>`);
     }, 600);
 }
