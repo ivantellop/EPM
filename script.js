@@ -33,7 +33,6 @@ function initChat() {
 }
 
 function handleRoleSelection(roleId, roleTitle) {
-    // Remove the initial options after clicking to clean the chat
     const oldOptions = document.querySelector('.options-container');
     if(oldOptions) oldOptions.remove();
 
@@ -46,13 +45,13 @@ function handleRoleSelection(roleId, roleTitle) {
             <strong>Definición del Rol: ${role.title}</strong><br>${role.desc}<br><br>
             <strong>KPIs Clave a Evaluar:</strong>
             <table><tr><th>Indicador (KPI)</th><th>Métrica de Medición</th><th>Meta Esperada</th></tr>${tableRows}</table><br>
-            <strong>Integración con el Modelo EPM (Enterprise Performance Management):</strong><br>
-            Nuestra evaluación no se basa en percepciones subjetivas, sino en la técnica EPM. Este sistema integra en tiempo real los datos de plataformas como Workday, Jira y Salesforce para crear un perfil de rendimiento 100% auditable.<br><br>
-            Como líder, usar el EPM te permite tres cosas fundamentales:
+            <strong>Integración con el Sistema EPM (Electronic Performance Monitoring):</strong><br>
+            Nuestra evaluación se apoya en el Monitoreo Electrónico del Desempeño. Mediante el uso de redes tecnológicas y software interno, monitoreamos las computadoras de los subordinados para registrar tiempos de respuesta, uso de aplicaciones clave y actividad en tiempo real.<br><br>
+            Como líder, usar este EPM te permite:
             <ol>
-                <li><strong>Alineación Estratégica:</strong> Demostrarle al colaborador cómo su trabajo diario impacta directamente en los OKRs (Objectives and Key Results) globales de LinkedIn.</li>
-                <li><strong>Análisis de Varianza:</strong> Identificar brechas históricas entre la 'Meta Esperada' y el 'Rendimiento Real' para detectar necesidades específicas de capacitación.</li>
-                <li><strong>Evaluación Basada en Datos:</strong> Eliminar el sesgo cognitivo asegurando que la calificación final dependa de métricas operativas y no de afinidad personal.</li>
+                <li><strong>Evaluación Objetiva:</strong> Respaldar tus comentarios con evidencia cuantificable extraída directamente de la actividad digital del usuario.</li>
+                <li><strong>Detección de Desviaciones:</strong> Identificar inmediatamente si el colaborador está invirtiendo su tiempo en prioridades incorrectas.</li>
+                <li><strong>Transparencia Total:</strong> Mostrarle al empleado su propio registro de productividad para justificar la calificación de sus KPIs.</li>
             </ol>
             <div class="options-container">
                 <button class="option-btn" onclick="showPlanning()">Paso 2: ¿Cómo planear la entrevista EPM?</button>
@@ -72,13 +71,13 @@ function showPlanning() {
             <strong>Protocolo de Planeación de la Sesión 1:1:</strong><br><br>
             Una evaluación EPM exitosa se gana en la preparación previa. Sigue estos pasos clave antes de sentarte con tu colaborador:
             <ul>
-                <li><strong>Auditoría de Datos EPM:</strong> Descarga el reporte histórico del último ciclo. Analiza las tendencias: ¿Hubo picos de productividad? ¿Caídas estacionales? Conoce los números a la perfección antes de la junta.</li>
-                <li><strong>Contextualización del Comportamiento:</strong> El tablero EPM te dice el <em>'qué'</em> (los números), pero tú debes investigar el <em>'cómo'</em> (los comportamientos). Recopila retroalimentación cualitativa de pares o correos destacados que expliquen el porqué de los resultados numéricos.</li>
-                <li><strong>Agenda Anticipada:</strong> Agenda la reunión con al menos 1 semana de anticipación. En la invitación, incluye los KPIs a revisar para que el colaborador pueda realizar y documentar su propia autoevaluación. Evita emboscadas.</li>
-                <li><strong>Seguridad Psicológica:</strong> Reserva una sala privada (o bloquea interrupciones si es virtual). Apaga notificaciones de Teams o Slack. El colaborador debe sentir que tiene tu atención incondicional y que es un espacio seguro para ser vulnerable.</li>
+                <li><strong>Auditoría de Datos EPM:</strong> Descarga el reporte de monitoreo electrónico del último ciclo. Analiza las tendencias: ¿Hubo picos de inactividad? ¿Cuáles son las horas de mayor productividad? Conoce los números a la perfección antes de la junta.</li>
+                <li><strong>Contextualización del Comportamiento:</strong> El tablero EPM te dice el <em>'qué'</em> (los números y tiempos), pero tú debes investigar el <em>'cómo'</em>. Recopila retroalimentación de pares que expliquen el porqué de los resultados numéricos.</li>
+                <li><strong>Agenda Anticipada:</strong> Agenda la reunión con al menos 1 semana de anticipación. En la invitación, incluye los KPIs y registros a revisar para evitar emboscadas.</li>
+                <li><strong>Seguridad Psicológica:</strong> Reserva una sala privada (o bloquea interrupciones si es virtual). El colaborador debe sentir que tiene tu atención incondicional y que es un espacio seguro para el diálogo constructivo.</li>
             </ul>
             <div class="options-container">
-                <button class="option-btn" onclick="showTips()">Paso 3: Tips para liderar la sesión</button>
+                <button class="option-btn" onclick="showTips()">Paso 3: Tips para resolución de conflictos</button>
             </div>`);
     }, 600);
 }
@@ -87,19 +86,19 @@ function showTips() {
     const oldOptions = document.querySelectorAll('.options-container');
     if(oldOptions.length > 0) oldOptions[oldOptions.length - 1].remove();
 
-    addMessage('user', `Dame los tips para ejecutar una retroalimentación exitosa.`);
+    addMessage('user', `Dame los tips para ejecutar una retroalimentación y manejar conflictos.`);
     
     setTimeout(() => {
         addMessage('bot', `
-            <strong>Técnicas de Liderazgo para la Sesión de Retroalimentación:</strong><br><br>
-            Durante la charla, tu objetivo no es juzgar, sino actuar como un 'Coach' de desarrollo:
+            <strong>Tips para una Retroalimentación y Manejo de Conflictos Exitoso:</strong><br><br>
+            Durante la charla, tu objetivo no es juzgar, sino actuar como un facilitador de soluciones:
             <ul>
-                <li><strong>Aplica 'Radical Candor' (Franqueza Radical):</strong> Desafía el bajo rendimiento de forma directa, pero demuestra un interés profundo y personal por la carrera del colaborador. No suavices la verdad, entrégala con empatía estructurada.</li>
-                <li><strong>Separa la Identidad del Problema:</strong> Apóyate en el tablero EPM para hablar estrictamente de hechos ("El porcentaje de errores aumentó al 4%"), evitando siempre los juicios de personalidad ("Últimamente eres descuidado").</li>
-                <li><strong>Escucha Activa (La Regla 70/30):</strong> Como líder, debes hablar solo el 30% del tiempo. Permite que el colaborador hable el 70% restante. Haz preguntas de sondeo: <em>"¿Qué obstáculos externos te impidieron alcanzar esta meta EPM?"</em> y escucha sin interrumpir.</li>
-                <li><strong>Transición a 'Feed-forward' (Visión a futuro):</strong> No terminen la junta atrapados en el pasado. Dediquen los últimos 15 minutos a co-crear un Plan de Acción (IDP). Definan 3 pasos operativos claros para mejorar los KPIs en el próximo trimestre.</li>
+                <li><strong>Abordaje Positivo del Conflicto:</strong> Es común que el colaborador se ponga a la defensiva al ver sus métricas de monitoreo. Usa la técnica "Conectar antes de Corregir"; valida sus retos primero y luego redirige la charla hacia los datos.</li>
+                <li><strong>Radical Candor:</strong> Habla estrictamente sobre los comportamientos evidenciados por el EPM y nunca ataques la personalidad.</li>
+                <li><strong>Escucha Activa (La Regla 70/30):</strong> Permite que el colaborador hable el 70% del tiempo. Haz preguntas de sondeo sobre los obstáculos externos que impactaron sus métricas de monitoreo.</li>
+                <li><strong>Enfoque en el Futuro, no en la Culpa:</strong> Si los números son bajos, no uses la junta para regañar. Transforma el conflicto en colaboración preguntando: <em>"¿Qué recursos te faltan para mejorar estas métricas el próximo mes?"</em></li>
             </ul>
-            <p><em>¡Estás completamente preparado! Recuerda que un buen líder no solo mide el rendimiento, sino que lo eleva e inspira.</em></p>
+            <p><em>¡Estás completamente preparado! Recuerda que un buen líder no solo monitorea el rendimiento, sino que lo eleva e inspira.</em></p>
             <div class="options-container">
                 <button class="option-btn" onclick="location.reload()">Reiniciar y evaluar otro puesto</button>
             </div>`);
